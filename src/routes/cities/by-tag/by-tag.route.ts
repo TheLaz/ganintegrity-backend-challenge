@@ -1,12 +1,11 @@
-import fs from 'fs';
-
 import { Request, Response, NextFunction } from 'express';
 import { ServerError } from './../../../Error';
 
 import { getCitiesByTagSchema } from './by-tag.schema';
-import { Address } from '../../../types';
 
-export function getCitiesByTag(request: Request, response: Response, next: NextFunction) {
+import { getAddresses } from '../../../api';
+
+export async function getCitiesByTag(request: Request, response: Response, next: NextFunction) {
   const { tag = '', isActive = true } = request.query;
 
   const schemaResult = getCitiesByTagSchema.safeParse({
@@ -24,20 +23,17 @@ export function getCitiesByTag(request: Request, response: Response, next: NextF
 
   const { data } = schemaResult;
 
-  fs.readFile(`${ __dirname}/../../../repositories/addresses.json`, "utf8", (error, file) => {
-    if (error) {
-      return next(new ServerError({
-        message: error.message,
-        statusCode: 500,
-        domain: 'Cities'
-      }));
-    }
+  const addressesResponse = await getAddresses();
 
-    const addresses: Address[] = JSON.parse(file);
+  if(addressesResponse.isErr()) {
+    return next(new ServerError({
+      message: addressesResponse.error.message,
+      statusCode: 500,
+      domain: 'Cities'
+    }));
+  }
 
-    const addressesResponse = addresses.filter((address) => address.tags.includes(data.tag) && address.isActive === data.isActive);
+  const addresses = addressesResponse.value.filter((address) => address.tags.includes(data.tag) && address.isActive === data.isActive);
 
-    response.status(200).json(addressesResponse)
-
-  });
+  response.status(200).json(addresses)
 }
