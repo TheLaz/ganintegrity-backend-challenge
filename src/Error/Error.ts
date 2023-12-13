@@ -1,7 +1,7 @@
 type Options = {
   message: string,
   statusCode: 200 | 404 | 400 | 401 | 500,
-  domain: 'Unknown' | 'Authentication' | ''
+  domain: 'Unknown' | 'Authentication' | 'Cities' | ''
 }
 
 class ServerError extends Error {
