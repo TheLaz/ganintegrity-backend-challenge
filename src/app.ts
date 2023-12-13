@@ -37,7 +37,7 @@ app.use(express.json());
  */
 
 app.use('/health', healthRouter);
-app.use('/cities', authenticationMiddleware, citiesRouter);
+app.use('/', authenticationMiddleware, citiesRouter);
 
 /**
  * Error

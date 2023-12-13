@@ -17,7 +17,7 @@ const router = express.Router();
  * Cities Routes
  */
 
-router.get('/tag', getCitiesByTag);
+router.get('/cities-by-tag', getCitiesByTag);
 router.get('/distance', getDistance);
 router.get('/area', timeoutMiddleware, getArea);
 router.get('/area-result/:city', getAreaResult);
