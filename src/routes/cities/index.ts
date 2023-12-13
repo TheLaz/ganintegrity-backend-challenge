@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { getCitiesByTag } from './by-tag';
-import { getDistance } from './get-distance';
+import { getDistance } from './distance';
 
 /**
  * Router
