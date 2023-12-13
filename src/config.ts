@@ -11,3 +11,5 @@ export const PORT = env
 export const TOKEN = env
   .get('TOKEN')
   .asString();
+
+export const AddressFilePath = `${ __dirname}/data-repositories/addresses.json`;
