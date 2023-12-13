@@ -35,13 +35,13 @@ export async function getDistance(request: Request, response: Response, next: Ne
 
   const addresses = addressesResponse.value;
 
-  const addressTo = addresses.find((address) => address.guid === to);
-  const addressFrom = addresses.find((address) => address.guid === from);
+  const addressTo = addresses.find((address) => address.guid === data.to);
+  const addressFrom = addresses.find((address) => address.guid === data.from);
 
 
   if (!addressTo) {
     return next(new ServerError({
-      message: `Can not find address for guid ${from}`,
+      message: `Can not find address for guid ${data.to}`,
       statusCode: 404,
       domain: 'Cities'
     }));
@@ -49,7 +49,7 @@ export async function getDistance(request: Request, response: Response, next: Ne
 
   if (!addressFrom) {
     return next(new ServerError({
-      message: `Can not find address for guid ${to}`,
+      message: `Can not find address for guid ${data.from}`,
       statusCode: 404,
       domain: 'Cities'
     }));

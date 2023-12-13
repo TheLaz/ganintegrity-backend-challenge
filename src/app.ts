@@ -21,6 +21,13 @@ import { citiesRouter } from './routes/cities';
 
 const app: express.Application = express();
 
+
+/**
+ * Area Cities,
+ */
+
+app.locals.citiesAreaMap = {};
+
 app.use(cors());
 app.use(helmet());
 app.use(express.json());

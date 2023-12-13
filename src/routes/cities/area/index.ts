@@ -1,1 +1,1 @@
-export * from './get-distance.route';
+export * from './area';
