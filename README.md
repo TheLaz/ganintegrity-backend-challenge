@@ -4,7 +4,7 @@
 
 - Please create a `.env` at the root level (next to the package.json)
 - `TOKEN=dGhlc2VjcmV0dG9rZW4=`
-- For the challenge we assume that it is already to have the secret here at the README
+- For the challenge we assume that it is alright to have the secret here at the README
 - Usually it will patched via pipelines
 
 ## API
