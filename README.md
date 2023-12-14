@@ -10,7 +10,7 @@
 ## API
 
 (!) Requirements - a `.env` as mentioned above.
-(!) If you created the `.env` file after running the api server, please shut it down complexly and then run `yarn start:dev`
+(!) If you created the `.env` file after running the api server, please shut it down completely and then run `yarn start:dev`
 
 Please follow the instructions to run the API
 
