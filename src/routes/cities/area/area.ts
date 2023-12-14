@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { ServerError } from '../../../Error';
 
+import { getAddresses } from '../../../api';
 import { getAreaSchema } from './area.schema';
 import { CitiesAreaMap } from '../../../types';
-import { getAddresses } from '../../../api';
 import { calculateDistance } from '../../../utils';
 
 export async function getArea(request: Request, response: Response, next: NextFunction) {
@@ -72,7 +72,7 @@ export async function getArea(request: Request, response: Response, next: NextFu
 
   const citiesInDistance = cities.filter((city) => {
     const distanceFromCity = calculateDistance(fromAddress, city);
-    return distanceFromCity <= data.distance * 1000;
+    return distanceFromCity.value <= data.distance * 1000;
   });
 
   areaMap[data.from] = {

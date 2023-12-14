@@ -21,5 +21,8 @@ export function errorMiddleware(err: TypeError | ServerError, _request: express.
    * Display error 
    */
 
-  response.status((serverError as ServerError).statusCode).send(serverError);
+  response.status((serverError as ServerError).statusCode).json({
+    message: serverError.message,
+    domain: serverError instanceof ServerError ? serverError.domain : 'Unknown',
+  });
 }

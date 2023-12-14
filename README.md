@@ -26,3 +26,4 @@ You can run the script via `yarn start:specs`.
 ## Notes
 
 - node-fetch library downgraded to 2.6.6 - Due to network? node compatibility? issues when running the index.js
+- We use `app.locals` to hold cities within a certain range. Probably a good idea to clean it, so what we can do is attach a timestamp and clean within a certain range if we wish.

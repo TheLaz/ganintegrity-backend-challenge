@@ -6,7 +6,7 @@ import { getCitiesByTagSchema } from './city-by-tag.schema';
 import { getAddresses } from '../../../api';
 
 export async function getCitiesByTag(request: Request, response: Response, next: NextFunction) {
-  const { tag = '', isActive = true } = request.query;
+  const { tag , isActive } = request.query;
 
   const schemaResult = getCitiesByTagSchema.safeParse({
     tag,

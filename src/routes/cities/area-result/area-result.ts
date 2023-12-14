@@ -5,10 +5,10 @@ import { getAreaResultSchema } from './area-result.schema';
 import { CitiesAreaMap } from '../../../types';
 
 export async function getAreaResult(request: Request, response: Response, next: NextFunction) {
-  const { city } = request.params;
+  const { cityGuid } = request.params;
 
   const schemaResult = getAreaResultSchema.safeParse({
-    city
+    cityGuid
   });
 
   if(!schemaResult.success) {
@@ -23,19 +23,19 @@ export async function getAreaResult(request: Request, response: Response, next: 
 
   const areaMap: CitiesAreaMap = request.app.locals.citiesAreaMap;
 
-  if(!areaMap[data.city]) {
+  if(!areaMap[data.cityGuid]) {
     return next(new ServerError({
-      message: `City was not found ${data.city}`,
+      message: `City was not found ${data.cityGuid}`,
       statusCode: 404,
       domain: 'Cities'
     }));
   }
 
-  if(areaMap[data.city].status !== 'done') {
-    return response.status(202).json({ city: data.city});
+  if(areaMap[data.cityGuid].status !== 'done') {
+    return response.status(202).json({ city: data.cityGuid});
   } 
 
   response.status(200).json({
-    ...areaMap[data.city]
+    ...areaMap[data.cityGuid]
   });
 }

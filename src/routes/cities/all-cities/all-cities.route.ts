@@ -8,6 +8,7 @@ export async function getAllCities(_request: Request, response: Response) {
   const fileSize = stat.size;
 
   const readStream = fs.createReadStream(env.AddressFilePath);
+  
   readStream.on('open', () => {
     response.setHeader('Content-Type', 'application/json');
     response.setHeader('Content-Length', fileSize);

@@ -6,7 +6,7 @@ import { getAddresses } from '../../../api';
 import { calculateDistance } from '../../../utils';
 
 export async function getDistance(request: Request, response: Response, next: NextFunction) {
-  const { to = '', from = '' } = request.query;
+  const { to,  from  } = request.query;
 
   const schemaResult = getDistanceSchema.safeParse({
     to, 
@@ -60,7 +60,7 @@ export async function getDistance(request: Request, response: Response, next: Ne
   response.status(200).json({
     from: addressFrom,
     to: addressTo,
-    unit: 'km',
-    distance,
+    unit: distance.unit,
+    distance: distance.value,
   });
 }
