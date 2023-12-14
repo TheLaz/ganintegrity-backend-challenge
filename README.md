@@ -1,5 +1,12 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Gan%20Integrity&fontSize=90&animation=fadeIn&fontAlignY=38&desc=Backend%20API%20Challenge&descAlignY=51&descAlign=62)
 
+## ENV
+
+- Please create a `.env` at the root level (next to the package.json)
+- `TOKEN=dGhlc2VjcmV0dG9rZW4=`
+- For the challenge we assume that it is already to have the secret here at the README
+- Usually it will patched via pipelines
+
 ## API
 
 Please follow the instructions to run the API
