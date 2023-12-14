@@ -50,10 +50,17 @@ export async function getArea(request: Request, response: Response, next: NextFu
 
   const areaMap: CitiesAreaMap = request.app.locals.citiesAreaMap;
 
-  if(!areaMap[data.from]) {
+  /**
+   * The result could change based on the distance, therefor
+   * we "reset" the lookup in case we get a request with the same
+   * city (address) but different distance
+   */
+  
+  if(!areaMap[data.from] || areaMap[data.from].distance !== data.distance) {
     areaMap[data.from] = {
+      cities: [],
       status: 'init',
-      cities: []
+      distance: data.distance,
     }
   }
   
