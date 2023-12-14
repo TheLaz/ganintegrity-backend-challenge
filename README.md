@@ -2,9 +2,19 @@
 
 ## API
 
+## Scripts
+
+I have located the index.js from the original backend challenge repository at the scripts folder under src.
+
+You can run the script via `yarn start:specs`.
+
 ## Notes
 
-- node-fetch library downgraded to 2.6.6
+- node-fetch library downgraded to 2.6.6 - Due to network? node compatibility? issues when running the index.js
+
 - At index.js at the area endpoint, the timeout parameter had to be moved to the query string, this is due to the request is GET and could not have body params
-- At index.js the following guid is not found 2152f96f-50c7-4d76-9e18-f7033bd14428, and had to be change to ed354fef-31d3-44a9-b92f-4a3bd7eb0408. This is due the previous API call also uses city.guid which is ed354fef-31d3-44a9-b92f-4a3bd7eb0408.
+
+- At index.js the following guid is not found `2152f96f-50c7-4d76-9e18-f7033bd14428`, and had to be change to `ed354fef-31d3-44a9-b92f-4a3bd7eb0408`.
+  This is due the previous API call also uses city.guid which is `ed354fef-31d3-44a9-b92f-4a3bd7eb0408`.
+
 - Due to previous changes the following had to be changed `assert.strictEqual(cities.length, 15);` to match the test
