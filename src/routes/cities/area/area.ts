@@ -8,11 +8,9 @@ import { calculateDistance } from '../../../utils';
 
 export async function getArea(request: Request, response: Response, next: NextFunction) {
   const { from, distance } = request.query;
-  const { timeout } = request.body;
 
   const schemaResult = getAreaSchema.safeParse({
     from,
-    timeout,
     distance: Number(distance)
   });
 
@@ -46,7 +44,9 @@ export async function getArea(request: Request, response: Response, next: NextFu
     }));
   }
 
-  response.status(202).json(`${request.protocol}://${request.get('host')}/area-result/${data.from}`);
+  response.status(202).json({
+    resultsUrl:`${request.protocol}://${request.get('host')}/area-result/${data.from}`
+  });
 
   const areaMap: CitiesAreaMap = request.app.locals.citiesAreaMap;
 

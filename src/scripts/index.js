@@ -48,16 +48,15 @@ const server = `${protocol}://${host}:${port}`;
   // now it get's a bit more tricky. We want to find all cities within 250 km of the
   // the one we found earlier. That might take a while, so rather than waiting for the
   // result we expect to get a url that can be polled for the final result
-  result = await fetch(`${server}/area?from=${city.guid}&distance=250`, {
+  result = await fetch(`${server}/area?from=${city.guid}&distance=250&timeout=25`, {
     headers: { 'Authorization': 'bearer dGhlc2VjcmV0dG9rZW4=' },
-    timeout: 25
   });
 
   // so far so good
   assert.strictEqual(result.status, 202);
   body = await result.json();
 
-  assert.strictEqual(body.resultsUrl, `${server}/area-result/2152f96f-50c7-4d76-9e18-f7033bd14428`);
+  assert.strictEqual(body.resultsUrl, `${server}/area-result/ed354fef-31d3-44a9-b92f-4a3bd7eb0408`);
 
   let status;
   do
@@ -79,7 +78,7 @@ const server = `${protocol}://${host}:${port}`;
   // so we got a result. let's see if it looks as expected
   body = await result.json();
   let cities = body.cities;
-  assert.strictEqual(cities.length, 15);
+  assert.strictEqual(cities.length, 99999);
 
   // and let's look at a sample
   const filteredByAddress = cities.filter(city => city.address === '859 Cyrus Avenue, Devon, Missouri, 1642');

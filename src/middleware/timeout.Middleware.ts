@@ -2,9 +2,19 @@ import express from 'express';
 import { ServerError } from '../Error';
 
 export function timeoutMiddleware(request: express.Request, response: express.Response, next: express.NextFunction) {
-  const { timeout } = request.body;
+  const { timeout } = request.query;
 
-  if(!timeout || isNaN(timeout)){
+  if(!timeout){
+    return next(new ServerError({
+      statusCode: 401,
+      domain: 'Timeout',
+      message: 'Missing timeout',
+    }));
+  }
+
+  const timeoutValue = Number(timeout);
+
+  if(isNaN(timeoutValue)){
     return next(new ServerError({
       statusCode: 401,
       domain: 'Timeout',
@@ -18,7 +28,7 @@ export function timeoutMiddleware(request: express.Request, response: express.Re
       domain: 'Timeout',
       message: 'Request timed out',
     }));
-  }, timeout * 1000);
+  }, timeoutValue * 1000);
 
   response.on('finish', () => {
     clearTimeout(timeoutHandler); 
