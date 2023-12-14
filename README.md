@@ -19,7 +19,7 @@ You can run the script via `yarn start:specs`.
 - Area endpoint, the timeout parameter had to be moved to the query string, this is due to the request is GET and could not have body params
 
 - Guid `2152f96f-50c7-4d76-9e18-f7033bd14428` can not be found at `addresses.json`, and had to be change to `ed354fef-31d3-44a9-b92f-4a3bd7eb0408`.
-  This is due the previous API call which uses the city.guid `ed354fef-31d3-44a9-b92f-4a3bd7eb0408`.
+  This is due the previous API call which uses the `city.guid` `ed354fef-31d3-44a9-b92f-4a3bd7eb0408`.
 
 - Due to previous changes the following had to be changed `assert.strictEqual(cities.length, 15);` to match the test
 
