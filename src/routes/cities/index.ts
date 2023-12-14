@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { getArea } from './area';
-import { getCitiesByTag } from './by-tag';
+import { getCitiesByTag } from './city-by-tag';
 import { getDistance } from './distance';
 import { timeoutMiddleware } from '../../middleware/timeout.Middleware';
 import { getAreaResult } from './area-result';

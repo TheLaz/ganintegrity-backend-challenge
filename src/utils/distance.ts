@@ -6,7 +6,7 @@ export function deg2rad(deg: number): number {
   return deg * (Math.PI / 180);
 }
 
-export function calculateDistance(fromAddress: Address, toAddress: Address): string {
+export function calculateDistance(fromAddress: Address, toAddress: Address): number {
   const dLat = deg2rad(toAddress.latitude - fromAddress.latitude);
   const dLon = deg2rad(toAddress.longitude - fromAddress.longitude);
 
@@ -17,6 +17,6 @@ export function calculateDistance(fromAddress: Address, toAddress: Address): str
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   const distance = R * c; // Distance in kilometers
-  return distance.toFixed(2);
+  return Number.parseFloat(distance.toFixed(2));
 }
 

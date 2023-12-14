@@ -41,7 +41,7 @@ export async function getArea(request: Request, response: Response, next: NextFu
   if(!fromAddress) {
     return next(new ServerError({
       message: `Could not find address with guid of ${data.from}`,
-      statusCode: 500,
+      statusCode: 404,
       domain: 'Cities'
     }));
   }
@@ -68,11 +68,11 @@ export async function getArea(request: Request, response: Response, next: NextFu
     status: 'in-progress'
   };
 
-  const cities = addressesResponse.value.filter((address) => address.guid === data.from);
+  const cities = addressesResponse.value.filter((address) => address.guid !== data.from);
 
   const citiesInDistance = cities.filter((city) => {
     const distanceFromCity = calculateDistance(fromAddress, city);
-    return distanceFromCity <= distance;
+    return distanceFromCity <= data.distance * 1000;
   });
 
   areaMap[data.from] = {

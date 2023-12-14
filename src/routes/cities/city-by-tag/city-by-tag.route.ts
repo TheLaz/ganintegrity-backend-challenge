@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { ServerError } from './../../../Error';
+import { ServerError } from '../../../Error';
 
-import { getCitiesByTagSchema } from './by-tag.schema';
+import { getCitiesByTagSchema } from './city-by-tag.schema';
 
 import { getAddresses } from '../../../api';
 
@@ -35,5 +35,7 @@ export async function getCitiesByTag(request: Request, response: Response, next:
 
   const addresses = addressesResponse.value.filter((address) => address.tags.includes(data.tag) && address.isActive === data.isActive);
 
-  response.status(200).json(addresses)
+  response.status(200).json({
+    cities: addresses
+  })
 }
