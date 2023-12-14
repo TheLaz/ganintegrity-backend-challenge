@@ -7,6 +7,6 @@ export const addressSchema = z.object({
   latitude: z.number(),
   longitude: z.number(),
   tags: z.string().array(),
-})
+});
 
 export type Address = z.infer<typeof addressSchema>;

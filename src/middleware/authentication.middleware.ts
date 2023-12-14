@@ -4,7 +4,6 @@ import { ServerError } from '../Error';
 import * as env from './../config';
 
 export function authenticationMiddleware(request: express.Request, _response: express.Response, next: express.NextFunction) {
-
   const bearerHeader = request.headers['authorization'];
 
   if(!bearerHeader) {

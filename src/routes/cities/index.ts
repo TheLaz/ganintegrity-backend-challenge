@@ -9,7 +9,7 @@ import { getCitiesByTag } from './city-by-tag';
 /**
  * Middleware
  */
-import { timeoutMiddleware } from '../../middleware/timeout.Middleware';
+import { timeoutMiddleware } from '../../middleware';
 
 
 /**
